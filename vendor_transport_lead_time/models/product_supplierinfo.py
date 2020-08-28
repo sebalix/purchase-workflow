@@ -10,16 +10,19 @@ class ProductSupplierinfo(models.Model):
     _inherit = "product.supplierinfo"
 
     delay = fields.Integer(
-        string="Lead Time",
-        compute="_compute_delay",
-        inverse="_inverse_delay",
-        readonly=True,
+        compute="_compute_delay", inverse="_inverse_delay", readonly=True, store=True
     )
     supplier_delay = fields.Integer(
-        string="Supplier Lead Time", default=0, required=True
+        string="Supplier Lead Time",
+        default=0,
+        required=True,
+        help="Supplier lead time in days.",
     )
     transport_delay = fields.Integer(
-        string="Transport Lead Time", default=0, required=True
+        string="Transport Lead Time",
+        default=0,
+        required=True,
+        help="Transport lead time in days.",
     )
 
     @api.depends("supplier_delay", "transport_delay")

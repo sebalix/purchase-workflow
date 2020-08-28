@@ -33,12 +33,7 @@ class TestDelay(SavepointCase):
     def test_set_delay(self):
         # Can't use Form here as Form().save() does not saves readonly fields.
         record = self.env["product.supplierinfo"].create(
-            {
-                "name": self.supplier.id,
-                "delay": 10,
-                "transport_delay": 5,
-                "supplier_delay": 5,
-            }
+            {"name": self.supplier.id, "transport_delay": 5, "supplier_delay": 5}
         )
         # test inverse method
         record.delay = 12
